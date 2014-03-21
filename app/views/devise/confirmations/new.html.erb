@@ -1,12 +1,16 @@
-<h2>Resend confirmation instructions</h2>
+<div class='row'>
+  <div class='span4'>
+    <%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: 'well' }) do |f| %>
+      <%= devise_error_messages! %>
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
+      <fieldset>
+        <legend>Resend confirmation instructions</legend>
+      <%= f.input :email %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
+      <%= f.button :submit, 'Resend confirmaton instructions' %>
+      </fieldset>
+    <% end %>
 
-  <div><%= f.submit "Resend confirmation instructions" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+    <%= render "devise/shared/links" %>
+  </div>
+</div>
