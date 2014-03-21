@@ -4,6 +4,8 @@ gem 'rails', '3.2.14'
 
 gem 'devise'
 
+gem 'simple_form'
+
 gem 'sqlite3'
 
 group :assets do
