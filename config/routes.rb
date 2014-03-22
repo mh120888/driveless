@@ -1,5 +1,7 @@
 Driveless::Application.routes.draw do
 
+  get "profiles/show"
+
   devise_for :users
 
   devise_scope :user do
@@ -10,6 +12,8 @@ Driveless::Application.routes.draw do
   end
 
   resources :statuses
+
+  get "/:id", to: 'profiles#show'
 
   root to: "statuses#index"
 
