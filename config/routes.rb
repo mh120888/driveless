@@ -13,6 +13,8 @@ Driveless::Application.routes.draw do
 
   resources :statuses
 
+  get "/:id", to: 'profiles#show'
+
   root to: "statuses#index"
 
 end
