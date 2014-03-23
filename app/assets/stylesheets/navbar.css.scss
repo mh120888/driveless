@@ -1,5 +1,9 @@
-$primary-color: whitesmoke;
+nav.navbar {
+  background-color: whitesmoke;
+}
 
-nav {
-  background-color: $primary-color;
+img.earth {
+  display: block;
+  margin: 0 auto;
+  width: 400px;
 }
