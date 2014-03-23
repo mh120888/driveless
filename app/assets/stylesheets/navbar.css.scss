@@ -1,5 +1,25 @@
+$primary-lightest: #d2f8b2;
+$primary-light: #ccc;
+$primary-medium: #67E300;
+$primary-dark: #439400;
+
+$secondary-lightest: #61D7A4;
+$secondary-medium: #ccc;
+
+$ternary-light: #ccc;
+
+
 nav.navbar {
-  background-color: whitesmoke;
+  background-color: $primary-dark;
+  .nav > li {
+    a {
+      color: $primary-lightest;
+      text-shadow: none;
+    }
+    a:hover {
+      color: $secondary-lightest;
+    }
+  }
 }
 
 img.earth {
