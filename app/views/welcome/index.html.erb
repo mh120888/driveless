@@ -6,4 +6,8 @@
 
 <%= image_tag 'ecology.svg', class: 'earth' %>
 
-<p class='lead text-center'>Want to know more?  <%= link_to "Try it out", register_path %> today.</p>
+<% if current_user %>
+  <p class='lead text-center'>See what's happening! <%= link_to "View your feed", feed_path %></p>
+<% else %>
+  <p class='lead text-center'>Want to know more?  <%= link_to "Try it out", register_path %> today.</p>
+<% end %>
