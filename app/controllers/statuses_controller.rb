@@ -16,11 +16,19 @@ class StatusesController < ApplicationController
   # GET /statuses/1.json
   def show
     @status = Status.find(params[:id])
+    
+    # respond_to do |format|
+    #   format.html # show.html.erb
+    #   format.json { render json: @status }
+    # end
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @status }
+    if current_user == @status.user
+      render 'show'
+    else 
+      redirect_to feed_path
     end
+
+
   end
 
   # GET /statuses/new
