@@ -1,5 +1,6 @@
 <div class='page-header'>
   <h1><%= @user.full_name %></h1>
+  <%= link_to "Edit Profile", edit_user_registration_path, class: "btn" %>
 </div>
 
 <% if @statuses %>
