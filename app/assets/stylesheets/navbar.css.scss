@@ -18,6 +18,9 @@ nav.navbar {
     a:hover {
       color: $secondary-lightest;
     }
+    &.dropdown.open > .dropdown-toggle {
+      background-color: $secondary-lightest;
+    }
   }
 }
 
