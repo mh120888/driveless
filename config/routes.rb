@@ -15,6 +15,8 @@ Driveless::Application.routes.draw do
 
   get "/bicycle", to: 'welcome#bicycle'
 
+  get '/bicycle/calculator', to: 'bicycle#calculator'
+
   get "/:id", to: 'profiles#show'
 
   root to: "welcome#index"
