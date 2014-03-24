@@ -1,6 +1,6 @@
 Driveless::Application.routes.draw do
 
-  get "profiles/show"
+# ========== devise ==========
 
   devise_for :users
 
@@ -11,11 +11,21 @@ Driveless::Application.routes.draw do
     get :feed, to: 'statuses#index', as: :feed
   end
 
+# ========== statuses ==========
+
   resources :statuses
+
+# ========== custom routes ==========
+
+  get "profiles/show"
 
   get "/bicycle", to: 'welcome#bicycle'
 
+  get '/bicycle/calculator', to: 'bicycle#calculator'
+
   get "/:id", to: 'profiles#show'
+
+# ========== homepage ==========
 
   root to: "welcome#index"
 
