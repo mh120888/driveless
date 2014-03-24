@@ -2,6 +2,8 @@
 
 DriveLess is a social media app centered around energy-efficient transportation choices.  Our goal is to provide a forum where like-minded individuals can interact, collaborate, and share their experiences.
 
+*developed using Chrome, so for the best experience, you should use Chrome too
+
 ###Current Features
 Users can currently
 - sign up
