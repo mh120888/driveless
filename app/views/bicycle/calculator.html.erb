@@ -1,1 +1,33 @@
-<h1>Savings Calculator</h1>
+<div class='page-header'>
+  <h1 class='text-center'>Savings Calculator</h1>
+</div>
+
+<div class='row'>
+  <div class='span3'></div>
+  <div id='calculator' class='span6'>
+    <div class='well'>
+      <%= form_tag '#' do %>
+        <%= label_tag 'Miles biked' %>
+        <%= text_field_tag 'Miles biked' %>
+
+        <%= label_tag 'Cost of gas' %>
+        <%= text_field_tag 'Cost of gas' %>
+        <br />
+        <%= submit_tag 'Calculate', class: 'btn' %>
+
+      <% end %>
+    </div>
+    <p class='text-center'>Assuming your car averages 25mpg, you saved this much on gas:</p>
+  </div>
+  <div class='span3'></div>
+</div>
+
+<div class='row'>
+  <div class='span5'></div>
+  <div class='span2'>
+    <div id='savings'>
+      <p class='text-center answer'></p>
+    </div>
+  </div>
+  <div class='span5'></div>
+</div>
