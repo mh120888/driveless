@@ -8,7 +8,6 @@ $secondary-medium: #ccc;
 
 $ternary-light: #ccc;
 
-
 nav.navbar {
   background-color: $primary-dark;
   .nav > li {
@@ -20,6 +19,10 @@ nav.navbar {
       color: $secondary-lightest;
     }
   }
+}
+
+.dropdown-menu {
+  background-color: $primary-dark;
 }
 
 img.earth {
