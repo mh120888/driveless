@@ -1,0 +1,27 @@
+$primary-lightest: #d2f8b2;
+$primary-light: #ccc;
+$primary-medium: #67E300;
+$primary-dark: #439400;
+
+$secondary-lightest: #61D7A4;
+$secondary-medium: #ccc;
+
+$ternary-light: #ccc;
+
+body {
+  padding-top: 70px;
+  background-color: $primary-lightest;
+  background-size: cover;
+}
+
+.well {
+  background-color: darken($primary-lightest, 10%);
+}
+
+div#block_2 {
+  display: none;
+}
+
+div#piktowrapper-embed {
+  padding-bottom: 32px;
+}
