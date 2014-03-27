@@ -6,6 +6,8 @@ gem 'devise'
 
 gem 'simple_form'
 
+gem 'state_machine'
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
