@@ -54,7 +54,8 @@ class UserTest < ActiveSupport::TestCase
 
   test 'that you can create friendships for a user' do 
     assert_nothing_raised do
-      users(:matt).friends << users(:jim)
+      @friendship = UserFriendship.new(user: users(:matt), friend: users(:jim))
+      @friendship.accept!
     end
     users(:matt).friends.reload
     assert users(:matt).friends.include?(users(:jim))
