@@ -29,7 +29,7 @@ class ProfilesControllerTest < ActionController::TestCase
     @friendship = UserFriendship.create(user_id: users(:matt).id, friend_id: users(:jim).id)
   end
   test 'shows pending friend requests' do
-    get :show, id: users(:matt).profile_name
+    get :show, id: users(:jim).profile_name
     assert assigns(:pending_requests)
     assert_equal assigns(:pending_requests), [@friendship]
   end

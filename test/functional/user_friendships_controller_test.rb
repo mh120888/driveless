@@ -89,7 +89,7 @@ class UserFriendshipsControllerTest < ActionController::TestCase
         end
         should 'display the appropriate flash message' do
           assert flash[:success]
-          assert_equal "You are now friends with #{users(:jim).full_name}", flash[:success]
+          assert_equal "You have requested to be friends with #{users(:jim).full_name}", flash[:success]
         end
       end
     end
