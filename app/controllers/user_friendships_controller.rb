@@ -1,5 +1,5 @@
 class UserFriendshipsController < ApplicationController
-  before_filter :authenticate_user!, only: [:new, :create]
+  before_filter :authenticate_user!, only: [:new, :create, :update]
 
   def new
     if params[:friend_id]
@@ -27,10 +27,14 @@ class UserFriendshipsController < ApplicationController
 
   def update
     @friend = User.find(params[:user_id])
-    @user_friendship = UserFriendship.where(friend_id: current_user.id, user_id: @friend.id).first
-    if @user_friendship.accept!
-      redirect_to profile_path(current_user)
-      flash[:success] = "You are now friends with #{@friend.full_name}"
+    if @user_friendship = UserFriendship.where(friend_id: current_user.id, user_id: @friend.id).first
+      if @user_friendship.accept!
+        redirect_to profile_path(current_user)
+        flash[:success] = "You are now friends with #{@friend.full_name}"
+      end
+    else
+      flash[:error] = 'This isn\'t working...sorry! Please try again later.'
+      redirect_to root_path
     end
   end
 

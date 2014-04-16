@@ -94,4 +94,51 @@ class UserFriendshipsControllerTest < ActionController::TestCase
       end
     end
   end
+
+  context '#update' do 
+    context 'for an unauthenticated user' do
+      should 'redirect to login page' do 
+        put :update, id: 1
+        assert_redirected_to new_user_session_path
+      end
+    end
+    context 'for an authenticated user' do
+      context 'with an invalid UserFriendship' do
+        setup do
+          sign_in users(:matt)
+          put :update, { id: 1, user_id: users(:jim).id, friend_id: users(:matt).id }
+        end
+        should 'display the appropriate error message' do
+          assert !flash[:error].empty?
+        end
+        should 'redirect to the appropriate page' do 
+          assert_redirected_to '/'
+        end
+      end
+      context 'with a valid UserFriendship' do
+        setup do
+          @user_friendship = UserFriendship.create(friend_id: users(:matt).id, user_id: users(:jim).id)
+          sign_in users(:matt)
+          put :update, { id: @user_friendship.id, user_id: users(:jim).id, friend_id: users(:matt).id }
+        end
+        should 'assign the current user to a friend object' do
+          assert assigns(:friend)
+          assert_equal assigns(:friend), users(:jim)
+        end
+        should 'assign the UserFriendship to a user_friendship object' do
+          assert assigns(:user_friendship)
+          assert_equal assigns(:user_friendship), @user_friendship
+        end
+        should 'change the state of the UserFriendship to accepted' do
+          assert_equal assigns(:user_friendship).state, 'accepted'
+        end
+        should 'redirect to the profile page for the current user' do
+          assert_redirected_to "/#{users(:matt).profile_name}"
+        end
+        should 'display the approrpriate success message' do
+          assert !flash[:success].empty?
+        end
+      end
+    end
+  end
 end
