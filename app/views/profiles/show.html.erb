@@ -8,7 +8,7 @@
         <%= link_to 'Accept', user_friendship_path(friend_id: @user.id, user_id: request.user_id), :method => :put, class: 'btn' %>
       </p>
     <% end %>
-  <% else %>
+  <% elsif UserFriendship.where(user_id: current_user.id, friend_id: @user.id).to_a == [] %>
     <%= link_to "Add Friend", new_user_friendship_path(friend_id: @user.id), class: "btn" %>
   <% end %>
 </div>
