@@ -25,6 +25,12 @@ class UserFriendshipTest < ActiveSupport::TestCase
     should 'initially have a state of pending' do
       assert_equal 'pending', @user_friendship.state
     end
+
+    should 'only be created if a UserFriendship does not already exist for the two users' do
+      @user_friendship.save
+      @second_user_friendship = UserFriendship.new user: users(:matt), friend: users(:jim)
+      assert_equal false, @second_user_friendship.save
+    end
   end
 
   context '#send_request_email' do

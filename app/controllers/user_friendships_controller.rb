@@ -16,9 +16,13 @@ class UserFriendshipsController < ApplicationController
     if params[:user_friendship]
       @friend = User.find(params[:user_friendship][:friend_id])
       @user_friendship = UserFriendship.new(friend: @friend, user: current_user)
-      @user_friendship.save
-      redirect_to profile_path(@friend)
-      flash[:success] = "You have requested to be friends with #{@friend.full_name}"
+      if @user_friendship.save
+        redirect_to profile_path(@friend)
+        flash[:success] = "You have requested to be friends with #{@friend.full_name}"
+      else
+        flash[:error] = "You are already friends with #{@user_friendship.friend.full_name}!"
+        redirect_to feed_path
+      end
     else
       flash[:error] = 'Friend is needed'
       redirect_to root_path

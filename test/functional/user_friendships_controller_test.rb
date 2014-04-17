@@ -72,24 +72,37 @@ class UserFriendshipsControllerTest < ActionController::TestCase
                     {:friend_id => users(:jim).id }
                   } 
         end
-        should 'assign a friend object' do
-          assert assigns(:friend)
-          assert_equal assigns(:friend), users(:jim)
+        context 'if the UserFriendship doesn\'t already exist' do
+          should 'assign a friend object' do
+            assert assigns(:friend)
+            assert_equal assigns(:friend), users(:jim)
+          end
+          should 'assign a user_friendship object' do
+            assert assigns(:user_friendship)
+            assert_equal assigns(:user_friendship).friend, users(:jim)
+            assert_equal assigns(:user_friendship).user, users(:matt)
+          end
+          # should 'create a friendship' do
+          #   assert users(:matt).friends.include?(users(:jim))
+          # end
+          should 'redirect to the profile page of the friend' do
+            assert_redirected_to profile_path(users(:jim))
+          end
+          should 'display the appropriate flash message' do
+            assert flash[:success]
+            assert_equal "You have requested to be friends with #{users(:jim).full_name}", flash[:success]
+          end
         end
-        should 'assign a user_friendship object' do
-          assert assigns(:user_friendship)
-          assert_equal assigns(:user_friendship).friend, users(:jim)
-          assert_equal assigns(:user_friendship).user, users(:matt)
-        end
-        # should 'create a friendship' do
-        #   assert users(:matt).friends.include?(users(:jim))
-        # end
-        should 'redirect to the profile page of the friend' do
-          assert_redirected_to profile_path(users(:jim))
-        end
-        should 'display the appropriate flash message' do
-          assert flash[:success]
-          assert_equal "You have requested to be friends with #{users(:jim).full_name}", flash[:success]
+        context 'if the UserFriendship does already exist' do
+          setup do
+            post :create, { :user_friendship => {:friend_id => users(:jim).id } } 
+          end
+          should 'display the appropriate error message' do
+            assert !flash[:error].empty?
+          end
+          should 'redirect to the feed path' do
+            assert_redirected_to feed_path
+          end
         end
       end
     end
