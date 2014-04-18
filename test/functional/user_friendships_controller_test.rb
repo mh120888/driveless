@@ -154,4 +154,31 @@ class UserFriendshipsControllerTest < ActionController::TestCase
       end
     end
   end
+
+  context '#destroy' do
+    context 'for an unauthenticated user' do
+      should 'redirect to login page' do 
+        delete :destroy, id: 1
+        assert_redirected_to new_user_session_path
+      end
+    end
+    context 'for an authenticated user' do
+      setup do
+        @user_friendship = UserFriendship.create(friend_id: users(:matt).id, user_id: users(:jim).id)
+        sign_in users(:matt)
+        delete :destroy, { id: @user_friendship.id }
+      end
+      should 'assign the correct UserFriendship object' do
+        assert_equal assigns(:user_friendship), @user_friendship
+      end
+      should 'remove the UserFriendship from the database' do
+        assert_raise ActiveRecord::RecordNotFound do
+          UserFriendship.find(@user_friendship.id)
+        end
+      end
+      should 'redirect the current user to their profile' do
+        assert_redirected_to profile_path(users(:matt))
+      end
+    end
+  end
 end

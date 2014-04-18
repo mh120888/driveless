@@ -21,4 +21,8 @@ class UserFriendship < ActiveRecord::Base
   def send_acceptance_email
     UserNotifier.friend_accepted_email(id).deliver
   end
+
+  def reject!
+    self.destroy
+  end
 end

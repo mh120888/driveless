@@ -42,4 +42,14 @@ class UserFriendshipsController < ApplicationController
     end
   end
 
+  def destroy
+    if current_user
+      @user_friendship = UserFriendship.find(params[:id])
+      @user_friendship.destroy
+      redirect_to profile_path(current_user)
+    else
+      redirect_to new_user_session_path
+    end
+  end
+
 end

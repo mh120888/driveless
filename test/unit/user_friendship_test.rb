@@ -67,6 +67,19 @@ class UserFriendshipTest < ActiveSupport::TestCase
       assert users(:matt).friends.include?(users(:jim))
     end
   end
+
+  context '#reject!' do
+    setup do
+      @user_friendship = UserFriendship.create user: users(:matt), friend: users(:jim)
+    end
+
+    should 'remove the UserFriendship from the database' do
+      @user_friendship.reject!
+      assert_raise ActiveRecord::RecordNotFound do
+        UserFriendship.find(@user_friendship.id)
+      end
+    end
+  end
 end
 
 
