@@ -67,6 +67,15 @@ class UserFriendshipTest < ActiveSupport::TestCase
       assert users(:matt).friends.include?(users(:jim))
     end
   end
+
+  context '#already_friends_with?' do
+    setup do
+      @user_friendship = UserFriendship.create user: users(:matt), friend: users(:jim)
+    end
+    should 'return true if two users are already friends' do
+      assert_equal true, users(:matt).already_friends_with?(users(:jim))
+    end
+  end
 end
 
 

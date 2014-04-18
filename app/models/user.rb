@@ -40,4 +40,8 @@ class User < ActiveRecord::Base
   def to_param
     profile_name
   end 
+
+  def already_friends_with?(friend)
+    !UserFriendship.where(user_id: self.id, friend_id: friend.id).to_a.empty? || !UserFriendship.where(user_id: friend.id, friend_id: self.id).to_a.empty?
+  end
 end

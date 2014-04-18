@@ -1,15 +1,17 @@
 <div class='page-header'>
   <h1><%= @user.full_name %></h1>
-  <% if current_user == @user %>
-    <%= link_to "Edit Profile", edit_user_registration_path, class: "btn" %>
-    <% @pending_requests.each do |request| %>
-      <p>
-        <%= User.find(request.user_id).full_name %> would like to be friends with you.
-        <%= link_to 'Accept', user_friendship_path(friend_id: @user.id, user_id: request.user_id), :method => :put, class: 'btn' %>
-      </p>
+  <% if current_user %>
+    <% if current_user == @user %>
+      <%= link_to "Edit Profile", edit_user_registration_path, class: "btn" %>
+      <% @pending_requests.each do |request| %>
+        <p>
+          <%= User.find(request.user_id).full_name %> would like to be friends with you.
+          <%= link_to 'Accept', user_friendship_path(friend_id: @user.id, user_id: request.user_id), :method => :put, class: 'btn' %>
+        </p>
+      <% end %>
+    <% elsif !current_user.already_friends_with?(@user) %>
+      <%= link_to "Add Friend", new_user_friendship_path(friend_id: @user.id), class: "btn" %>
     <% end %>
-  <% elsif UserFriendship.where(user_id: current_user.id, friend_id: @user.id).to_a == [] %>
-    <%= link_to "Add Friend", new_user_friendship_path(friend_id: @user.id), class: "btn" %>
   <% end %>
 </div>
 
