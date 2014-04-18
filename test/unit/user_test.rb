@@ -64,4 +64,23 @@ class UserTest < ActiveSupport::TestCase
   test 'calling to_param on a user returns the profile name' do
     assert_equal users(:matt).profile_name, users(:matt).to_param
   end
+
+  context '#already_friends_with?' do
+    context 'already friends' do
+      setup do
+        @user_friendship = UserFriendship.create user: users(:matt), friend: users(:jim)
+      end
+      should 'return true if two users are already friends' do
+        assert_equal true, users(:matt).already_friends_with?(users(:jim))
+      end
+      should 'return true even if the user/friend are swapped' do
+        assert_equal true, users(:jim).already_friends_with?(users(:matt))
+      end
+    end
+    context 'not already friends' do
+      should 'return false if two users are not already friends' do
+        assert_equal false, users(:matt).already_friends_with?(users(:jim))
+      end
+    end
+  end
 end
