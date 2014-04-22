@@ -103,6 +103,14 @@ class UserFriendshipsControllerTest < ActionController::TestCase
           should 'redirect to the feed path' do
             assert_redirected_to feed_path
           end
+          context 'if the UserFriendship exists with the user and friend switched' do
+            should 'not create a UserFriendship' do
+              assert_nothing_raised do
+                sign_in users(:jim)
+                post :create, { :user_friendship => {:friend_id => users(:matt).id } }
+              end
+            end
+          end
         end
       end
     end
@@ -116,9 +124,11 @@ class UserFriendshipsControllerTest < ActionController::TestCase
       end
     end
     context 'for an authenticated user' do
+      setup do
+        sign_in users(:matt)
+      end
       context 'with an invalid UserFriendship' do
         setup do
-          sign_in users(:matt)
           put :update, { id: 1, user_id: users(:jim).id, friend_id: users(:matt).id }
         end
         should 'display the appropriate error message' do
@@ -131,7 +141,6 @@ class UserFriendshipsControllerTest < ActionController::TestCase
       context 'with a valid UserFriendship' do
         setup do
           @user_friendship = UserFriendship.create(friend_id: users(:matt).id, user_id: users(:jim).id)
-          sign_in users(:matt)
           put :update, { id: @user_friendship.id, user_id: users(:jim).id, friend_id: users(:matt).id }
         end
         should 'assign the current user to a friend object' do
