@@ -2,6 +2,9 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
 
+  should have_many :user_friendships
+  should have_many :friends
+
   test 'a user should enter a first name' do
     user = User.new
     assert !user.save
@@ -41,5 +44,43 @@ class UserTest < ActiveSupport::TestCase
     user.password = user.password_confirmation = 'password'
     user.profile_name = 'validname10'
     assert user.valid?
+  end
+
+  test 'no error is raised when trying to get to a user\'s friends' do 
+    assert_nothing_raised do
+      users(:matt).friends
+    end
+  end
+
+  test 'that you can create friendships for a user' do 
+    assert_nothing_raised do
+      @friendship = UserFriendship.new(user: users(:matt), friend: users(:jim))
+      @friendship.accept!
+    end
+    users(:matt).friends.reload
+    assert users(:matt).friends.include?(users(:jim))
+  end
+
+  test 'calling to_param on a user returns the profile name' do
+    assert_equal users(:matt).profile_name, users(:matt).to_param
+  end
+
+  context '#already_friends_with?' do
+    context 'already friends' do
+      setup do
+        @user_friendship = UserFriendship.create user: users(:matt), friend: users(:jim)
+      end
+      should 'return true if two users are already friends' do
+        assert_equal true, users(:matt).already_friends_with?(users(:jim))
+      end
+      should 'return true even if the user/friend are swapped' do
+        assert_equal true, users(:jim).already_friends_with?(users(:matt))
+      end
+    end
+    context 'not already friends' do
+      should 'return false if two users are not already friends' do
+        assert_equal false, users(:matt).already_friends_with?(users(:jim))
+      end
+    end
   end
 end
