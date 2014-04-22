@@ -13,10 +13,10 @@ Users can currently
 - access bike-commuting resources
 - use the gas savings calculator
 - view a simple bike commuting infographic
+- have 'friends'
 
 ###Feature Requests
 - gas mileage tracking with the goal of improving average mileage
 - visualizations of mileage data (e.g. mpg over time, cost of fuel, etc.)
-- have 'friends'
 - post images, video, etc.
 - track bike riding history, cumulative gas savings
