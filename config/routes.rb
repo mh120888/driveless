@@ -1,5 +1,8 @@
 Driveless::Application.routes.draw do
 
+  resources :fillups
+
+
 # ========== devise ==========
 
   as :user do

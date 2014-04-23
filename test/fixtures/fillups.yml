@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  odometer_reading: 1
+  amount_of_gas: 1
+  price_of_gas: 1
+  date_of_fillup: 2014-04-23
+
+two:
+  odometer_reading: 1
+  amount_of_gas: 1
+  price_of_gas: 1
+  date_of_fillup: 2014-04-23

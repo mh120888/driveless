@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class StatusTest < ActiveSupport::TestCase
+  should belong_to :user
+
   test 'that a status requires content to be persisted' do 
     status = Status.new
     assert !status.save
