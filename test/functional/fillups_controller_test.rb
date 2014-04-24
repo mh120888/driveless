@@ -107,10 +107,29 @@ class FillupsControllerTest < ActionController::TestCase
       end
     end
   end
-
-  test "should get edit" do
-    get :edit, id: @fillup
-    assert_response :success
+  context '#edit' do
+    context 'for an authenticated user' do
+      should 'redirect to the login page' do
+        get :edit, id: @fillup
+        assert_response :redirect
+        assert_redirected_to new_user_session_path
+      end
+    end
+    context 'for an authenticated user' do
+      setup do
+        sign_in users(:matt)
+      end
+      should 'should get edit page for specified fillup belonging to current user' do
+        get :edit, id: @fillup
+        assert_response :success
+      end
+      should 'not show edit form for fillup belonging to another user' do
+        @other_fillup = fillups(:two)
+        get :edit, id: @other_fillup
+        assert_response :redirect
+        assert !flash[:error].empty?
+      end
+    end
   end
 
   test "should update fillup" do

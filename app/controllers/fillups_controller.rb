@@ -1,6 +1,6 @@
 class FillupsController < ApplicationController
 
-  before_filter :authenticate_user!, only: [:index, :new, :create, :show]
+  before_filter :authenticate_user!, except: [:destroy, :update]
 
   def index
     @fillups = Fillup.where(user_id: current_user.id)
@@ -40,6 +40,10 @@ class FillupsController < ApplicationController
   # GET /fillups/1/edit
   def edit
     @fillup = Fillup.find(params[:id])
+    if @fillup.user_id != current_user.id
+      redirect_to fillups_path
+      flash[:error] = 'That Fillup doesn\'t belong to you.'
+    end
   end
 
   # POST /fillups
