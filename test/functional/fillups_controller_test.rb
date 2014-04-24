@@ -1,19 +1,59 @@
 require 'test_helper'
 
 class FillupsControllerTest < ActionController::TestCase
+
   setup do
     @fillup = fillups(:one)
   end
 
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:fillups)
+  context '#index' do
+    context 'for an unauthenticated user' do
+      should 'redirect to the login page' do
+        get :index
+        assert_response :redirect
+        assert_redirected_to new_user_session_path
+      end
+    end
+    context 'for an authenticated user' do
+      setup do
+        sign_in users(:matt)
+      end
+      should 'should get index without error' do
+        get :index
+        assert_response :success
+      end
+      should 'assign the current user\'s fillups' do
+        get :index
+        assert_equal true, assigns(:fillups).include?(fillups(:one))
+      end
+      should 'not retrieve any fillups belonging to other users' do
+        get :index
+        assert_equal false, assigns(:fillups).include?(fillups(:two))
+      end
+    end
   end
 
-  test "should get new" do
-    get :new
-    assert_response :success
+  context '#new' do
+    context 'for an unauthenticated user' do
+      should 'redirect to the login page' do
+        get :new
+        assert_response :redirect
+        assert_redirected_to new_user_session_path
+      end
+    end
+    context 'for an authenticated user' do
+      setup do
+        sign_in users(:matt)
+      end
+      should 'should get page with no errors' do
+        get :new
+        assert_response :success
+      end
+      should 'assign a new fillup object' do
+        get :new
+        assert assigns(:fillup)
+      end
+    end
   end
 
   test "should create fillup" do

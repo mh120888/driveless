@@ -1,8 +1,9 @@
 class FillupsController < ApplicationController
-  # GET /fillups
-  # GET /fillups.json
+
+  before_filter :authenticate_user!, only: [:index, :new]
+
   def index
-    @fillups = Fillup.all
+    @fillups = Fillup.where(user_id: current_user.id)
 
     respond_to do |format|
       format.html # index.html.erb
