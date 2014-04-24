@@ -7,5 +7,6 @@ class Fillup < ActiveRecord::Base
   validates :date_of_fillup, presence: true
   validates :odometer_reading, presence: true
   validates :price_of_gas, presence: true
+  validates :user_id, presence: true
   
 end

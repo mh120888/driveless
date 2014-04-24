@@ -1,6 +1,6 @@
 class FillupsController < ApplicationController
 
-  before_filter :authenticate_user!, only: [:index, :new]
+  before_filter :authenticate_user!, only: [:index, :new, :create, :show]
 
   def index
     @fillups = Fillup.where(user_id: current_user.id)
@@ -15,10 +15,14 @@ class FillupsController < ApplicationController
   # GET /fillups/1.json
   def show
     @fillup = Fillup.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @fillup }
+    if @fillup.user_id == current_user.id
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @fillup }
+      end
+    else
+      redirect_to fillups_path
+      flash[:error] = 'That Fillup doesn\'t belong to you.'
     end
   end
 
@@ -42,9 +46,9 @@ class FillupsController < ApplicationController
   # POST /fillups.json
   def create
     @fillup = Fillup.new(params[:fillup])
-
+    @fillup.user_id = current_user.id
     respond_to do |format|
-      if @fillup.save
+      if @fillup.user_id == current_user.id && @fillup.save
         format.html { redirect_to @fillup, notice: 'Fillup was successfully created.' }
         format.json { render json: @fillup, status: :created, location: @fillup }
       else
