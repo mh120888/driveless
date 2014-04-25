@@ -14,27 +14,27 @@
       <img src="./assets/0.8.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2014-04-24T13:32:52-07:00">2014-04-24T13:32:52-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2014-04-25T11:40:10-07:00">2014-04-25T11:40:10-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="green">99.26%</span></span>
+    (<span class="covered_percent"><span class="green">99.56%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         2.27
+         2.3
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>43</b> files in total.
-    <b>672</b> relevant lines. 
-    <span class="green"><b>667</b> lines covered</span> and
-    <span class="red"><b>5</b> lines missed </span>
+    <b>679</b> relevant lines. 
+    <span class="green"><b>676</b> lines covered</span> and
+    <span class="red"><b>3</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -72,12 +72,12 @@
       
       <tr>
         <td class="strong"><a href="#de57f90cd0cd1d5c02e8daeb7f9a8c23b2e22548" class="src_link" title="app/controllers/fillups_controller.rb">app/controllers/fillups_controller.rb</a></td>
-        <td class="green strong">95.83 %</td>
-        <td>92</td>
-        <td>48</td>
-        <td>46</td>
-        <td>2</td>
-        <td>1.8</td>
+        <td class="green strong">100.0 %</td>
+        <td>96</td>
+        <td>51</td>
+        <td>51</td>
+        <td>0</td>
+        <td>2.1</td>
       </tr>
       
       <tr>
@@ -183,9 +183,9 @@
       <tr>
         <td class="strong"><a href="#02b1c9d788162cc6c14016e46b30be37b4c34584" class="src_link" title="app/models/fillup.rb">app/models/fillup.rb</a></td>
         <td class="green strong">100.0 %</td>
+        <td>20</td>
         <td>12</td>
-        <td>8</td>
-        <td>8</td>
+        <td>12</td>
         <td>0</td>
         <td>3.0</td>
       </tr>
@@ -207,7 +207,7 @@
         <td>23</td>
         <td>23</td>
         <td>0</td>
-        <td>8.1</td>
+        <td>8.2</td>
       </tr>
       
       <tr>
@@ -589,11 +589,11 @@
         <div class="source_table" id="de57f90cd0cd1d5c02e8daeb7f9a8c23b2e22548">
   <div class="header">
     <h3>app/controllers/fillups_controller.rb</h3>
-    <h4><span class="green">95.83 %</span> covered</h4>
+    <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>48</b> relevant lines. 
-      <span class="green"><b>46</b> lines covered</span> and
-      <span class="red"><b>2</b> lines missed.</span>
+      <b>51</b> relevant lines. 
+      <span class="green"><b>51</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
   
@@ -615,7 +615,7 @@
         <li class="covered" data-hits="3" data-linenumber="3">
           <span class="hits">3</span>
           
-          <code class="ruby">  before_filter :authenticate_user!, except: [:destroy, :update]</code>
+          <code class="ruby">  before_filter :authenticate_user!</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="4">
@@ -1002,8 +1002,8 @@
           <code class="ruby">  def update</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="68">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="3" data-linenumber="68">
+          <span class="hits">3</span>
           
           <code class="ruby">    @fillup = Fillup.find(params[:id])</code>
         </li>
@@ -1014,16 +1014,16 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="70">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="3" data-linenumber="70">
+          <span class="hits">3</span>
           
           <code class="ruby">    respond_to do |format|</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="71">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="3" data-linenumber="71">
+          <span class="hits">3</span>
           
-          <code class="ruby">      if @fillup.update_attributes(params[:fillup])</code>
+          <code class="ruby">      if @fillup.user_id == current_user.id &amp;&amp; @fillup.update_attributes(params[:fillup])</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="72">
@@ -1044,14 +1044,14 @@
           <code class="ruby">      else</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="75">
+        <li class="covered" data-hits="4" data-linenumber="75">
+          <span class="hits">4</span>
           
-          
-          <code class="ruby">        format.html { render action: &quot;edit&quot; }</code>
+          <code class="ruby">        format.html { render action: &quot;edit&quot;, status: :unprocessable_entity }</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="76">
-          
+        <li class="covered" data-hits="2" data-linenumber="76">
+          <span class="hits">2</span>
           
           <code class="ruby">        format.json { render json: @fillup.errors, status: :unprocessable_entity }</code>
         </li>
@@ -1098,55 +1098,79 @@
           <code class="ruby">  def destroy</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="84">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="2" data-linenumber="84">
+          <span class="hits">2</span>
           
           <code class="ruby">    @fillup = Fillup.find(params[:id])</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="85">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="2" data-linenumber="85">
+          <span class="hits">2</span>
           
-          <code class="ruby">    @fillup.destroy</code>
+          <code class="ruby">    if @fillup.user_id == current_user.id</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="86">
+        <li class="covered" data-hits="1" data-linenumber="86">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">      @fillup.destroy</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="87">
           <span class="hits">1</span>
           
-          <code class="ruby">    respond_to do |format|</code>
+          <code class="ruby">      respond_to do |format|</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="88">
           <span class="hits">2</span>
           
-          <code class="ruby">      format.html { redirect_to fillups_url }</code>
+          <code class="ruby">        format.html { redirect_to fillups_url }</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="89">
           <span class="hits">1</span>
           
-          <code class="ruby">      format.json { head :no_content }</code>
+          <code class="ruby">        format.json { head :no_content }</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="90">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="91">
           
           
+          <code class="ruby">    else</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="92">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      redirect_to fillups_path</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="93">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      flash[:error] = 'That Fillup doesn\'t belong to you.'</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="94">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="95">
+          
+          
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="92">
+        <li class="never" data-hits="" data-linenumber="96">
           
           
           <code class="ruby">end</code>
@@ -2583,8 +2607,8 @@
     <h3>app/models/fillup.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>8</b> relevant lines. 
-      <span class="green"><b>8</b> lines covered</span> and
+      <b>12</b> relevant lines. 
+      <span class="green"><b>12</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -2631,34 +2655,82 @@
         <li class="covered" data-hits="3" data-linenumber="7">
           <span class="hits">3</span>
           
-          <code class="ruby">  validates :date_of_fillup, presence: true</code>
+          <code class="ruby">  validates :amount_of_gas, numericality: true</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="8">
-          <span class="hits">3</span>
+        <li class="never" data-hits="" data-linenumber="8">
           
-          <code class="ruby">  validates :odometer_reading, presence: true</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="3" data-linenumber="9">
           <span class="hits">3</span>
           
+          <code class="ruby">  validates :date_of_fillup, presence: true </code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="10">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="3" data-linenumber="11">
+          <span class="hits">3</span>
+          
+          <code class="ruby">  validates :odometer_reading, presence: true</code>
+        </li>
+      
+        <li class="covered" data-hits="3" data-linenumber="12">
+          <span class="hits">3</span>
+          
+          <code class="ruby">  validates :odometer_reading, numericality: true</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="13">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="3" data-linenumber="14">
+          <span class="hits">3</span>
+          
           <code class="ruby">  validates :price_of_gas, presence: true</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="10">
+        <li class="covered" data-hits="3" data-linenumber="15">
           <span class="hits">3</span>
           
-          <code class="ruby">  validates :user_id, presence: true</code>
+          <code class="ruby">  validates :price_of_gas, numericality: true</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="11">
+        <li class="never" data-hits="" data-linenumber="16">
           
           
           <code class="ruby">  </code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="12">
+        <li class="covered" data-hits="3" data-linenumber="17">
+          <span class="hits">3</span>
+          
+          <code class="ruby">  validates :user_id, presence: true</code>
+        </li>
+      
+        <li class="covered" data-hits="3" data-linenumber="18">
+          <span class="hits">3</span>
+          
+          <code class="ruby">  validates :user_id, numericality: true, numericality: { only_integer: true }</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="19">
+          
+          
+          <code class="ruby">  </code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="20">
           
           
           <code class="ruby">end</code>
@@ -2940,8 +3012,8 @@
           <code class="ruby">  def full_name</code>
         </li>
       
-        <li class="covered" data-hits="58" data-linenumber="31">
-          <span class="hits">58</span>
+        <li class="covered" data-hits="60" data-linenumber="31">
+          <span class="hits">60</span>
           
           <code class="ruby">    &quot;#{self.first_name} #{self.last_name}&quot;</code>
         </li>

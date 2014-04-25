@@ -64,7 +64,6 @@ class FillupsControllerTest < ActionController::TestCase
         assert_redirected_to new_user_session_path
       end
     end
-
     context 'for an authenticated user' do
       setup do
         sign_in users(:matt)
@@ -107,6 +106,7 @@ class FillupsControllerTest < ActionController::TestCase
       end
     end
   end
+
   context '#edit' do
     context 'for an authenticated user' do
       should 'redirect to the login page' do
@@ -132,16 +132,59 @@ class FillupsControllerTest < ActionController::TestCase
     end
   end
 
-  test "should update fillup" do
-    put :update, id: @fillup, fillup: { amount_of_gas: @fillup.amount_of_gas, date_of_fillup: @fillup.date_of_fillup, odometer_reading: @fillup.odometer_reading, price_of_gas: @fillup.price_of_gas }
-    assert_redirected_to fillup_path(assigns(:fillup))
+  context '#update' do
+    context 'for an unauthenticated user' do
+      should 'redirect to the login page' do
+        put :update, id: @fillup, fillup: { amount_of_gas: @fillup.amount_of_gas, date_of_fillup: @fillup.date_of_fillup, odometer_reading: @fillup.odometer_reading, price_of_gas: @fillup.price_of_gas }
+        assert_response :redirect
+        assert_redirected_to new_user_session_path
+      end
+    end
+    context 'for an authenticated user' do
+      setup do
+        sign_in users(:matt)
+      end
+      should 'update fillup when the information has changed' do
+        put :update, id: @fillup, fillup: { amount_of_gas: 12.2, date_of_fillup: @fillup.date_of_fillup, odometer_reading: @fillup.odometer_reading, price_of_gas: @fillup.price_of_gas }
+        assert_redirected_to fillup_path(assigns(:fillup))
+      end
+      should 'not update the fillup given invalid parameters' do
+        put :update, id: @fillup, fillup: { amount_of_gas: 'two', date_of_fillup: @fillup.date_of_fillup, odometer_reading: @fillup.odometer_reading, price_of_gas: @fillup.price_of_gas }
+        assert_response :unprocessable_entity
+      end
+      should 'not update the fillup of another user' do
+        @second_fillup = fillups(:two)
+        put :update, id: @second_fillup.id, fillup: { amount_of_gas: 12.2, date_of_fillup: @second_fillup.date_of_fillup, odometer_reading: @second_fillup.odometer_reading, price_of_gas: @second_fillup.price_of_gas }
+        assert_response :unprocessable_entity
+      end
+     end
   end
 
-  test "should destroy fillup" do
-    assert_difference('Fillup.count', -1) do
-      delete :destroy, id: @fillup
+  context '#destroy' do
+    context 'for an unauthenticated user' do
+      should 'redirect to the login page' do
+        delete :destroy, id: @fillup
+        assert_response :redirect
+        assert_redirected_to new_user_session_path
+      end
     end
-
-    assert_redirected_to fillups_path
+    context 'for an authenticated user' do
+      setup do
+        sign_in users(:matt)
+      end
+      should 'destroy fillup if fillup belongs to current user' do
+        assert_difference('Fillup.count', -1) do
+          delete :destroy, id: @fillup
+        end
+        assert_redirected_to fillups_path
+      end
+      should 'not destroy fillup if fillup belongs to other user' do
+        @second_fillup = fillups(:two)
+        assert_no_difference('Fillup.count') do
+          delete :destroy, id: @second_fillup
+        end
+        assert !flash[:error].empty?
+      end
+    end
   end
 end
