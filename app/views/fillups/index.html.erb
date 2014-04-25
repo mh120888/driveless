@@ -1,29 +1,16 @@
-<h1>Listing fillups</h1>
+<h1>My Fillups</h1>
 
-<table>
-  <tr>
-    <th>Odometer reading</th>
-    <th>Amount of gas</th>
-    <th>Price of gas</th>
-    <th>Date of fillup</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @fillups.each do |fillup| %>
-  <tr>
-    <td><%= fillup.odometer_reading %></td>
-    <td><%= fillup.amount_of_gas %></td>
-    <td><%= fillup.price_of_gas %></td>
-    <td><%= fillup.date_of_fillup %></td>
-    <td><%= link_to 'Show', fillup %></td>
-    <td><%= link_to 'Edit', edit_fillup_path(fillup) %></td>
-    <td><%= link_to 'Destroy', fillup, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
+<ul>
+  <% @fillups.each do |fillup| %>
+    <%= fillup.date_of_fillup %><br/>
+    My car had <%= fillup.odometer_reading %> miles, 
+    I bought <%= fillup.amount_of_gas %> gallons of gas 
+    at $<%= fillup.price_of_gas %> per gallon.<br/>
+    <%= link_to 'View', fillup %> |
+    <%= link_to 'Edit', edit_fillup_path(fillup) %> |
+    <%= link_to 'Delete', fillup, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <hr/>
+  <% end %>
+</ul>
 
 <%= link_to 'New Fillup', new_fillup_path %>
