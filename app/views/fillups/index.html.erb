@@ -3,9 +3,8 @@
 <ul>
   <% @fillups.each do |fillup| %>
     <%= fillup.date_of_fillup %><br/>
-    My car had <%= fillup.odometer_reading %> miles, 
-    I bought <%= fillup.amount_of_gas %> gallons of gas 
-    at $<%= fillup.price_of_gas %> per gallon.<br/>
+    Mileage - <%= fillup.calculate_mpg %> mpg<br/> 
+    Purchase - <%= fillup.amount_of_gas %> gallons at $<%= fillup.price_of_gas %>/gallon<br/>
     <%= link_to 'View', fillup %> |
     <%= link_to 'Edit', edit_fillup_path(fillup) %> |
     <%= link_to 'Delete', fillup, method: :delete, data: { confirm: 'Are you sure?' } %>

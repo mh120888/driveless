@@ -14,7 +14,7 @@
       <img src="./assets/0.8.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2014-04-25T11:40:10-07:00">2014-04-25T11:40:10-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2014-04-26T10:41:54-07:00">2014-04-26T10:41:54-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -32,8 +32,8 @@
   <a name="AllFiles"></a>
   <div>
     <b>43</b> files in total.
-    <b>679</b> relevant lines. 
-    <span class="green"><b>676</b> lines covered</span> and
+    <b>681</b> relevant lines. 
+    <span class="green"><b>678</b> lines covered</span> and
     <span class="red"><b>3</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -183,11 +183,11 @@
       <tr>
         <td class="strong"><a href="#02b1c9d788162cc6c14016e46b30be37b4c34584" class="src_link" title="app/models/fillup.rb">app/models/fillup.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>20</td>
-        <td>12</td>
-        <td>12</td>
+        <td>24</td>
+        <td>14</td>
+        <td>14</td>
         <td>0</td>
-        <td>3.0</td>
+        <td>3.1</td>
       </tr>
       
       <tr>
@@ -2607,8 +2607,8 @@
     <h3>app/models/fillup.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>12</b> relevant lines. 
-      <span class="green"><b>12</b> lines covered</span> and
+      <b>14</b> relevant lines. 
+      <span class="green"><b>14</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -2625,7 +2625,7 @@
         <li class="covered" data-hits="3" data-linenumber="2">
           <span class="hits">3</span>
           
-          <code class="ruby">  attr_accessible :amount_of_gas, :date_of_fillup, :odometer_reading, :price_of_gas, :user_id</code>
+          <code class="ruby">  attr_accessible :amount_of_gas, :date_of_fillup, :miles_driven, :price_of_gas, :user_id</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="3">
@@ -2679,13 +2679,13 @@
         <li class="covered" data-hits="3" data-linenumber="11">
           <span class="hits">3</span>
           
-          <code class="ruby">  validates :odometer_reading, presence: true</code>
+          <code class="ruby">  validates :miles_driven, presence: true</code>
         </li>
       
         <li class="covered" data-hits="3" data-linenumber="12">
           <span class="hits">3</span>
           
-          <code class="ruby">  validates :odometer_reading, numericality: true</code>
+          <code class="ruby">  validates :miles_driven, numericality: true</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="13">
@@ -2727,10 +2727,34 @@
         <li class="never" data-hits="" data-linenumber="19">
           
           
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="3" data-linenumber="20">
+          <span class="hits">3</span>
+          
+          <code class="ruby">  def calculate_mpg</code>
+        </li>
+      
+        <li class="covered" data-hits="4" data-linenumber="21">
+          <span class="hits">4</span>
+          
+          <code class="ruby">    miles_driven.to_f/amount_of_gas</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="22">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="23">
+          
+          
           <code class="ruby">  </code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="20">
+        <li class="never" data-hits="" data-linenumber="24">
           
           
           <code class="ruby">end</code>
