@@ -1,15 +1,17 @@
 <h1>My Fillups</h1>
+<%= link_to 'New Fillup', new_fillup_path, class: 'btn' %><br/>
+
+<canvas id="myChart" width="800" height="400"></canvas>
+<%= link_to 'View Recent Fillups', '#', id: 'view-chart', class: 'btn' %>
 
 <ul>
   <% @fillups.each do |fillup| %>
     <%= fillup.date_of_fillup %><br/>
     Mileage - <%= fillup.calculate_mpg %> mpg<br/> 
     Purchase - <%= fillup.amount_of_gas %> gallons at $<%= fillup.price_of_gas %>/gallon<br/>
-    <%= link_to 'View', fillup %> |
-    <%= link_to 'Edit', edit_fillup_path(fillup) %> |
-    <%= link_to 'Delete', fillup, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= link_to 'View', fillup, class: 'btn' %>
+    <%= link_to 'Edit', edit_fillup_path(fillup), class: 'btn' %>
+    <%= link_to 'Delete', fillup, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn' %>
     <hr/>
   <% end %>
 </ul>
-
-<%= link_to 'New Fillup', new_fillup_path %>

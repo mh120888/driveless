@@ -14,7 +14,7 @@
       <img src="./assets/0.8.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2014-04-26T10:41:54-07:00">2014-04-26T10:41:54-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2014-04-26T14:00:33-07:00">2014-04-26T14:00:33-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -633,7 +633,7 @@
         <li class="covered" data-hits="3" data-linenumber="6">
           <span class="hits">3</span>
           
-          <code class="ruby">    @fillups = Fillup.where(user_id: current_user.id)</code>
+          <code class="ruby">    @fillups = current_user.fillups.last(15)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="7">
@@ -651,7 +651,7 @@
         <li class="covered" data-hits="3" data-linenumber="9">
           <span class="hits">3</span>
           
-          <code class="ruby">      format.html # index.html.erb</code>
+          <code class="ruby">      format.html</code>
         </li>
       
         <li class="covered" data-hits="3" data-linenumber="10">
@@ -717,7 +717,7 @@
         <li class="covered" data-hits="1" data-linenumber="20">
           <span class="hits">1</span>
           
-          <code class="ruby">        format.html # show.html.erb</code>
+          <code class="ruby">        format.html</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="21">
@@ -807,7 +807,7 @@
         <li class="covered" data-hits="2" data-linenumber="35">
           <span class="hits">2</span>
           
-          <code class="ruby">      format.html # new.html.erb</code>
+          <code class="ruby">      format.html</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="36">

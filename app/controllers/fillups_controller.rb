@@ -3,10 +3,10 @@ class FillupsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @fillups = Fillup.where(user_id: current_user.id)
+    @fillups = current_user.fillups.last(15)
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @fillups }
     end
   end
@@ -17,7 +17,7 @@ class FillupsController < ApplicationController
     @fillup = Fillup.find(params[:id])
     if @fillup.user_id == current_user.id
       respond_to do |format|
-        format.html # show.html.erb
+        format.html
         format.json { render json: @fillup }
       end
     else
@@ -32,7 +32,7 @@ class FillupsController < ApplicationController
     @fillup = Fillup.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @fillup }
     end
   end
