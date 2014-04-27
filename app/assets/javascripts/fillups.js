@@ -4,17 +4,13 @@ var MPGChart = (function() {
   labels : [],
   datasets : [
       {
-        fillColor : "rgba(0,50,100,0.5)",
+        fillColor : "rgba(0,115,115,0.5)",
         strokeColor : "rgba(220,220,220,1)",
         pointColor : "rgba(220,220,220,1)",
         pointStrokeColor : "#fff",
         data : []
       }
     ]
-  }
-
-  function bindEvents() {
-    $('a#view-chart').on('click', grabData);
   }
 
   function grabData() {
@@ -35,21 +31,15 @@ var MPGChart = (function() {
 
   function drawChart(data) {
     var ctx = document.getElementById("myChart").getContext("2d");
-    var myNewChart = new Chart(ctx).Bar(data);
+    var myNewChart = new Chart(ctx).Line(data);
     $('a#view-chart').css('display', 'none');
   }
 
   function _init() {
-    bindEvents();
+    grabData();
   }
 
   return {
     init: _init
   }
 }());
-
-// todo
-
-// grab data from server
-// format data for use in chart
-// render chart

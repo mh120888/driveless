@@ -1,17 +1,28 @@
-<h1>My Fillups</h1>
-<%= link_to 'New Fillup', new_fillup_path, class: 'btn' %><br/>
 
-<canvas id="myChart" width="800" height="400"></canvas>
-<%= link_to 'View Recent Fillups', '#', id: 'view-chart', class: 'btn' %>
+<div id='fillups'>
+  <h1>My Fillups</h1>
 
-<ul>
-  <% @fillups.each do |fillup| %>
-    <%= fillup.date_of_fillup %><br/>
-    Mileage - <%= fillup.calculate_mpg %> mpg<br/> 
-    Purchase - <%= fillup.amount_of_gas %> gallons at $<%= fillup.price_of_gas %>/gallon<br/>
-    <%= link_to 'View', fillup, class: 'btn' %>
-    <%= link_to 'Edit', edit_fillup_path(fillup), class: 'btn' %>
-    <%= link_to 'Delete', fillup, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn' %>
-    <hr/>
-  <% end %>
-</ul>
+  <canvas id="myChart" width="800" height="400"></canvas>
+  <p class='y-axis-label'>MPG</p>
+  <p class='x-axis-label'>Date of Fillup</p>
+  <hr/>
+
+  <div id='fillup-list'>
+    <h2>List of Fillups</h2>
+    <%= link_to 'Add a Fillup',new_fillup_path, class: 'btn' %><br/>
+
+    <% @fillups.each do |fillup| %>
+      <div class='individual-fillup row'>
+        <div class='fillup-date span2'>
+          <%= fillup.date_of_fillup.to_formatted_s(:long) %><br/>
+        </div>
+        <div class='fillup-details span9'>
+          Mileage - <%= fillup.calculate_mpg %> mpg<br/> 
+          Purchase - <%= fillup.amount_of_gas %> gallons at $<%= fillup.price_of_gas %>/gallon<br/>
+          <%= link_to 'Edit', edit_fillup_path(fillup), class: 'btn' %>
+          <%= link_to 'Delete', fillup, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

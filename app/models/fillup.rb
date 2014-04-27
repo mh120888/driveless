@@ -17,8 +17,9 @@ class Fillup < ActiveRecord::Base
   validates :user_id, presence: true
   validates :user_id, numericality: true, numericality: { only_integer: true }
 
+  MONTHS = %w(January February March April May June July August September October November December)
+
   def calculate_mpg
     miles_driven.to_f/amount_of_gas
   end
-  
 end
