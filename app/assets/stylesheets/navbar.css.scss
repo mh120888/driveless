@@ -1,26 +1,20 @@
-$primary-lightest: #d2f8b2;
-$primary-light: #ccc;
-$primary-medium: #67E300;
-$primary-dark: #439400;
-
-$secondary-lightest: #61D7A4;
-$secondary-medium: #ccc;
-
-$ternary-light: #ccc;
+@import "colors";
 
 nav.navbar {
   background-color: $primary-dark;
-  box-shadow: 0px 0px 5px #333;
+  box-shadow: 0px 1px 10px #333;
   .nav > li {
     a {
-      color: $primary-lightest;
+      color: white;
       text-shadow: none;
+      font-weight: 200;
+      letter-spacing: 3px;
     }
     a:hover {
-      color: $secondary-lightest;
+      color: $primary-lightest;
     }
     &.dropdown.open > .dropdown-toggle {
-      background-color: $secondary-lightest;
+      background-color: $primary-lightest;
     }
   }
 }

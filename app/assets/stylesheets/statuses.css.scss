@@ -1,5 +1,7 @@
+@import "colors";
+
 .status {
-  border-bottom: solid 1px #ccc;
+  border-bottom: solid 1px $silver-gray;
   padding: 5px 0;
   p {
     margin: 4px 0;
