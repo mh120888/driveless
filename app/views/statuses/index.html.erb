@@ -1,7 +1,8 @@
 <div class='page-header'>
-  <h1>All of the Statuses</h1>
+  <h1>What People Are Saying</h1>
 </div>
-<%= link_to "Post a New Status", new_status_path, class: 'btn btn-success' %>
+<%= link_to "Say Something", new_status_path, class: 'btn btn-success' %>
+<hr/>
 <% @statuses.each do |status| %>
   <div class ='status'>
     <div class='row'>

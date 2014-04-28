@@ -11,12 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140423210341) do
+ActiveRecord::Schema.define(:version => 20140428001855) do
 
   create_table "fillups", :force => true do |t|
     t.integer  "miles_driven"
-    t.integer  "amount_of_gas"
-    t.integer  "price_of_gas"
+    t.float    "amount_of_gas"
+    t.float    "price_of_gas"
     t.date     "date_of_fillup"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false

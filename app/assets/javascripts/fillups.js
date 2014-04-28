@@ -4,7 +4,7 @@ var MPGChart = (function() {
   labels : [],
   datasets : [
       {
-        fillColor : "rgba(0,115,115,0.5)",
+        fillColor : "rgba(59, 206, 0, 0.4)",
         strokeColor : "rgba(220,220,220,1)",
         pointColor : "rgba(220,220,220,1)",
         pointStrokeColor : "#fff",
