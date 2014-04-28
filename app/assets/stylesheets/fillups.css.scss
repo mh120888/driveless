@@ -1,0 +1,44 @@
+@import "colors";
+
+div#fillups {
+  h1 {
+    text-align: center;
+  }
+  p.x-axis-label {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 18px;
+  }
+  p.y-axis-label {
+    display: inline;
+    position: relative;
+    top: -200px;
+    right: -30px;
+    font-size: 18px;
+  }
+  canvas#myChart {
+    margin: 0 auto;
+    display: block;
+  }
+  div#fillup-list {
+    a.btn {
+      margin: 30px 0; 
+    }
+    div.individual-fillup {
+      margin: 20px 0;
+      border: solid 2px $primary-dark;
+      background: $primary-lightest;
+      box-shadow: 3px 3px 10px #333;
+      div.fillup-date {
+        text-align: center;
+        margin-top: 64px;
+        font-size: 18px;
+      }
+      div.fillup-details {
+        border-left: solid 1px $primary-dark;
+        padding: 20px 0 0 20px;
+        background: white;
+      }
+    }
+  }
+}

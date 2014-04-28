@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  miles_driven: 200
+  amount_of_gas: 10.6
+  price_of_gas: 4.05
+  date_of_fillup: 2014-04-12
+  user: matt
+
+two:
+  miles_driven: 280
+  amount_of_gas: 12.5
+  price_of_gas: 3.95
+  date_of_fillup: 2014-04-23
+  user: jim

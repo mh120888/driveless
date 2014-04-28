@@ -14,6 +14,7 @@
       <li><%= link_to "DriveLess", root_path %></li>
       <% if user_signed_in? %>
         <li><%= link_to "Feed", feed_path %></li>
+        <li><%= link_to 'Fillups', fillups_path %></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bike<b class="caret"></b></a>
           <ul class="dropdown-menu">

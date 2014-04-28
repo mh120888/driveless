@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Miles Driven:</b>
+  <%= @fillup.miles_driven %>
+</p>
+
+<p>
+  <b>Amount of gas:</b>
+  <%= @fillup.amount_of_gas %>
+</p>
+
+<p>
+  <b>Price of gas:</b>
+  <%= @fillup.price_of_gas %>
+</p>
+
+<p>
+  <b>Date of fillup:</b>
+  <%= @fillup.date_of_fillup %>
+</p>
+
+
+<%= link_to 'Edit', edit_fillup_path(@fillup) %> |
+<%= link_to 'Back', fillups_path %>

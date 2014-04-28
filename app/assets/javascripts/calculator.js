@@ -1,5 +1,6 @@
 $(document).ready(function() {
   calculatorController.bindEvents();
+  MPGChart.init();
 });
 
 var calculatorController = {

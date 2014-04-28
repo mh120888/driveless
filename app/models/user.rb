@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
                                       foreign_key: :user_id,
                                       conditions: { state: 'pending' }
   has_many :pending_friends, through: :pending_user_friendships, source: :friend
+  has_many :fillups
 
   def full_name
     "#{self.first_name} #{self.last_name}"
